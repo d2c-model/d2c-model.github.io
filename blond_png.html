@@ -1,58 +1,106 @@
-<script type="text/javascript">
-var column_idx;
-var sort_by_ascending = false;
-
-function sorting(tbody, column_idx){
-  this.column_idx = column_idx;
-  Array.from(tbody.rows)
-       .sort(compareCells)
-       .forEach(function(row) { tbody.appendChild(row); })
-  sort_by_ascending = !sort_by_ascending;
-}
-
-function compareCells(row_a, row_b) {
-  var val_a = row_a.cells[column_idx].innerText;
-  var val_b = row_b.cells[column_idx].innerText;
-  var flag = sort_by_ascending ? 1 : -1;
-  return flag * (val_a > val_b ? 1 : -1);
-}
-</script>
-
+<!DOCTYPE html>
 <html>
-
 <head>
-<style>
-  table {
-    border-spacing: 0;
-    border: 1px solid black;
-  }
-  th {
-    cursor: pointer;
-  }
-  th, td {
+  <meta charset="utf-8">
+  <meta name="description"
+        content="D2C is a VAE-based generative model suitable for few-shot conditional generation.">
+  <meta name="keywords" content="VAE, diffusion, generative modeling, contrastive representation learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D2C: Blond</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+
+
+
+  </script> -->
+
+
+  <script>
+    var doc = document.querySelector('link[rel="import"]').import;
+    // Grab DOM from doc.html's document.
+    var text = doc.querySelector('.doc');
+    document.body.appendChild(text.cloneNode(true));
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    th, td {
     text-align: left;
     vertical-align: middle;
     border-collapse: collapse;
     border: 0.5px solid black;
     padding: 8px;
   }
-  tr:nth-child(even) {
-    background-color: #d2d2d2;
+  </style>
+  <script type="text/javascript">
+  var column_idx;
+  var sort_by_ascending = false;
+
+  function sorting(tbody, column_idx){
+    this.column_idx = column_idx;
+    Array.from(tbody.rows)
+        .sort(compareCells)
+        .forEach(function(row) { tbody.appendChild(row); })
+    sort_by_ascending = !sort_by_ascending;
   }
-</style>
+
+  function compareCells(row_a, row_b) {
+    var val_a = row_a.cells[column_idx].innerText;
+    var val_b = row_b.cells[column_idx].innerText;
+    var flag = sort_by_ascending ? 1 : -1;
+    return flag * (val_a > val_b ? 1 : -1);
+  }
+  </script>
 </head>
+
+
+<html>
+
 
 <body>
 
+<section class="section">
+  <div class="container is-max-desktop content">
+  <div class="columns is-vcentered has-text-centered is-full-width">
+    <div class="column">
 <table>
 <thead>
 <tr>
   <th onclick="sorting(tbody, 0)">Name</th>
-  <th onclick="sorting(tbody, 1)">Original</th>
-  <th onclick="sorting(tbody, 2)">Our_DDIM_interpolation</th>
-  <th onclick="sorting(tbody, 3)">StyleGAN-Baseline</th>
-  <th onclick="sorting(tbody, 4)">NVAE</th>
-  <th onclick="sorting(tbody, 5)">DDIM</th>
+  <th onclick="sorting(tbody, 1)" width="18%">Original</th>
+  <th onclick="sorting(tbody, 2)" width="18%">D2C</th>
+  <th onclick="sorting(tbody, 3)" width="18%">StyleGAN2</th>
+  <th onclick="sorting(tbody, 4)" width="18%">NVAE</th>
+  <th onclick="sorting(tbody, 5)" width="18%">DDIM</th>
 </tr>
 </thead>
 <tbody id="tbody">
@@ -1658,6 +1706,10 @@ function compareCells(row_a, row_b) {
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+</section>
 
 </body>
 </html>

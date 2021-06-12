@@ -1,15 +1,10 @@
-# Nerfies
+# D2C
 
-This is the repository that contains source code for the [Nerfies website](https://nerfies.github.io).
+This is the repository that contains source code for the [D2C Website](https://d2c-model.github.io/).
 
-If you find Nerfies useful for your work please cite:
+If you find D2C useful for your work please cite:
 ```
-@article{park2020nerfies
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Deformable Neural Radiance Fields},
-  journal   = {arXiv preprint arXiv:2011.12948},
-  year      = {2020},
-}
+
 ```
 
 # Website License

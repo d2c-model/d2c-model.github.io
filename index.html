@@ -396,8 +396,13 @@
   <!-- Results videos. -->
   <div class="columns is-vcentered has-text-centered is-full-width">
     <div class="column">
-  
-<table id="blond">
+
+<div id="blond">
+<p>
+  For more blond results, please visit <a href="blond_png.html" target="_blank">here</a>.
+</p>
+<table>
+
 <thead>
 <tr>
   <th onclick="sorting(tbody, 0)">Name</th>
@@ -492,9 +497,13 @@
 </tr>
 </tbody>
 </table>
+</div> 
 
-
-<table id="lipstick">
+<div id="lipstick">
+<p>
+  For more red lipstick results, please visit <a href="red_lipstick_png.html" target="_blank">here</a>.
+</p>
+<table>
 <thead>
 <tr>
   <th onclick="sorting(tbody, 0)">Name</th>
@@ -589,8 +598,13 @@
 </tr>
 </tbody>
 </table>
+    </div>
 
-<table id="beard">
+<div id="beard">
+<p>
+  For more beard results, please visit <a href="beard_png.html" target="_blank">here</a>.
+</p>
+<table>
 <thead>
 <tr>
   <th onclick="sorting(tbody, 0)">Name</th>
@@ -684,6 +698,7 @@
 </tr>
 </tbody>
 </table>
+</div>
     </div>
 
     </div>
@@ -706,6 +721,24 @@
   </div>
 </section>
 
+
+<section class="section">
+  <div class="columns is-centered">
+      <div class="column is-8 content">
+        <h2 class="title is-3">Related Work</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Our works builds on diffusion generative models (or score-based generative models). Here is a non-exhaustive list.
+            <a href="https://export.arxiv.org/abs/1907.05600">[Song et al., 2019]</a> introduced the idea of generative modeling based on gradients of the log-probability (scores) and Langevin dynamics between data distributions with various levels of noise. <a href="https://arxiv.org/abs/2006.11239">[Ho et al., 2020]</a> used a variational approach to determine the schedule for Langevin-like dynamics, and the variational approach was introduced much earlier in <a href="https://arxiv.org/abs/1503.03585">[Sohl-Dickstein et al., 2015]</a>. The sampling procedure is interpreted as discretization of an SDE <a href="https://arxiv.org/abs/2011.13456">[Song et al., 2021a]</a> and can be accelerated by using an ODE point of view <a href="https://arxiv.org/abs/2010.02502">[Song et al., 2021b]</a>.
+          </p>
+          <p>
+            Despite the success in image synthesis, diffusion models have not demonstrated sound results in terms of latent variable inference, which can be important if we wish to imbue them with conditions learned from few-shot. The ODE approach can be used to obtain latent variables, but they are "fixed" in some sense (determined by the scores at different noise levels), and cannot be integrated with recent advances in contrastive self-supervised learning. This motivates our work of integrating diffusion models, VAEs and contrastive learning. <a href="https://arxiv.org/abs/2106.05931">A concurrent work</a> demonstrates that VAE + diffusion models in the latent space can achieve state-of-the-art unconditional image synthesis with enough resources in training. 
+          </p>
+        </div>
+      </div>
+      </div>  
+    </section>
 
 <footer class="footer">
   <div class="container">
