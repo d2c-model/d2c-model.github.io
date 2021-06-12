@@ -9,7 +9,7 @@
   <title>D2C: Diffusion-Denoising Models for Few-shot Conditional Generation</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -23,6 +23,14 @@
 
 
 
+  </script> -->
+
+
+  <script>
+    var doc = document.querySelector('link[rel="import"]').import;
+    // Grab DOM from doc.html's document.
+    var text = doc.querySelector('.doc');
+    document.body.appendChild(text.cloneNode(true));
   </script>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
@@ -43,6 +51,22 @@
   <script src="./static/js/index.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    th, td {
+
+    text-align: left;
+
+    vertical-align: middle;
+
+    border-collapse: collapse;
+
+    border: 0.5px solid black;
+
+    padding: 8px;
+
+  }
+  </style>
 </head>
 <body>
 
@@ -92,9 +116,9 @@
           <h1 class="title is-1 publication-title">D2C: Diffusion-Denoising Models for Few-shot Conditional Generation</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://a7b23.github.io/">Abhishek Sinha</a><sup>1</sup>,</span>
+              <a href="https://a7b23.github.io/">Abhishek Sinha*</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="http://tsong.me">Jiaming Song</a><sup>1</sup>,</span>
+              <a href="http://tsong.me">Jiaming Song*</a><sup>1</sup>,</span>
             <span class="author-block">
               <a href="https://cs.stanford.edu/~chenlin/">Chenlin Meng</a><sup>1</sup>,
             </span>
@@ -140,13 +164,13 @@
               </span> -->
               <!-- Code Link. -->
               <span class="link-block">
-                <!-- <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark"> -->
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
                   <span>Code [In preparation]</span>
-                  <!-- </a> -->
+                </a>
               </span>
             </div>
 
@@ -244,6 +268,9 @@
             This paper describes Diffusion-Decoding models with Contrastive representations (D2C), a paradigm for training
             unconditional variational autoencoders (VAEs) for few-shot conditional image generation.
             </p>
+    <div class="hero-body">
+      <img id="teaser" src="./static/images/d2.png" height="100%">
+    </div>
             <p>
               D2C uses a learned diffusion-based prior over the latent representations to improve generation and contrastive
               self-supervised learning to improve representation quality.
@@ -284,10 +311,11 @@
           <p>
             We can learn information about a label from a few examples (e.g. 100 faces with blond hair), and D2C can generate new images with that label (faces with blond hair).
           </p>
-          <video id="dollyzoom" autoplay controls muted loop height="100%">
+            <img src="./static/images/label-demo.png" width="100%">
+          <!-- <video id="dollyzoom" autoplay controls muted loop height="100%">
             <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/dollyzoom-stacked.mp4"
                     type="video/mp4">
-          </video>
+          </video> -->
         </div>
       </div>
       <!--/ Visual Effects. -->
@@ -298,12 +326,9 @@
         <div class="columns is-centered">
           <div class="column content">
             <p>
-              We can also levearge learned labels to manipulate images, such as adding a red lipstick or a beard to a human face.
+              We can also levearge learned labels to manipulate images, such as adding a red lipstick or a beard to a human face while keeping other features similar.
             </p>
-            <video id="matting-video" controls height="100%">
-              <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
+            <img src="./static/images/manip-demo.png" width="100%">
           </div>
 
         </div>
@@ -311,72 +336,9 @@
     </div>
     <!--/ Matting. -->
 
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="https://homes.cs.washington.edu/~kpar/nerfies/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="https://homes.cs.washington.edu/~kpar/nerfies/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 width="75%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
 
     <!-- Concurrent Work. -->
-    <div class="columns is-centered">
+    <!-- <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Related Links</h2>
 
@@ -399,21 +361,347 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/ Concurrent Work. -->
 
   </div>
 </section>
 
 
+
+
+<section class="section">
+  <div class="container is-max-desktop content">
+
+    <!-- Results header. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <h1 class="title is-3">Image Manipulation Comparsons</h1>
+        <div class="content has-text-justified">
+          We show image manipulation results with D2C and baseline comparisons (StyleGAN2, NVAE, DDIM) on three attributes.
+          These attributes are trained on 100 labeled examples.    
+        </div>
+      </div>
+    </div>
+    <!--/ Results header. -->
+
+  <div class="tabs is-toggle is-fullwidth">
+    <ul>
+      <li><a>Blond hair</a></li>
+      <li><a>Red Lipstick</a></li>
+      <li><a>Beard</a></li>
+    </ul>
+  </div>
+
+  <!-- Results videos. -->
+  <div class="columns is-vcentered has-text-centered is-full-width">
+    <div class="column">
+  
+<table id="blond">
+<thead>
+<tr>
+  <th onclick="sorting(tbody, 0)">Name</th>
+  <th onclick="sorting(tbody, 1)" width="18%">Original</th>
+  <th onclick="sorting(tbody, 2)" width="18%">D2C</th>
+  <th onclick="sorting(tbody, 3)" width="18%">StyleGAN2</th>
+  <th onclick="sorting(tbody, 4)" width="18%">NVAE</th>
+  <th onclick="sorting(tbody, 5)" width="18%">DDIM</th>
+</tr>
+
+</thead>
+<tbody>
+  <tr>
+  <td>0<br><br></td>
+ <td><img src="blond/0.png" width="100%"></td>
+ <td><img src="blond/1.png" width="100%"></td>
+ <td><img src="blond/2.png" width="100%"></td>
+ <td><img src="blond/3.png" width="100%"></td>
+ <td><img src="blond/4.png" width="100%"></td>
+</tr>
+<tr>
+  <td>1<br><br></td>
+ <td><img src="blond/5.png" width="100%"></td>
+ <td><img src="blond/6.png" width="100%"></td>
+ <td><img src="blond/7.png" width="100%"></td>
+ <td><img src="blond/8.png" width="100%"></td>
+ <td><img src="blond/9.png" width="100%"></td>
+</tr>
+<tr>
+  <td>2<br><br></td>
+ <td><img src="blond/10.png" width="100%"></td>
+ <td><img src="blond/11.png" width="100%"></td>
+ <td><img src="blond/12.png" width="100%"></td>
+ <td><img src="blond/13.png" width="100%"></td>
+ <td><img src="blond/14.png" width="100%"></td>
+</tr>
+<tr>
+  <td>3<br><br></td>
+ <td><img src="blond/15.png" width="100%"></td>
+ <td><img src="blond/16.png" width="100%"></td>
+ <td><img src="blond/17.png" width="100%"></td>
+ <td><img src="blond/18.png" width="100%"></td>
+ <td><img src="blond/19.png" width="100%"></td>
+</tr>
+<tr>
+  <td>4<br><br></td>
+ <td><img src="blond/20.png" width="100%"></td>
+ <td><img src="blond/21.png" width="100%"></td>
+ <td><img src="blond/22.png" width="100%"></td>
+ <td><img src="blond/23.png" width="100%"></td>
+ <td><img src="blond/24.png" width="100%"></td>
+</tr>
+<tr>
+  <td>5<br><br></td>
+ <td><img src="blond/25.png" width="100%"></td>
+ <td><img src="blond/26.png" width="100%"></td>
+ <td><img src="blond/27.png" width="100%"></td>
+ <td><img src="blond/28.png" width="100%"></td>
+ <td><img src="blond/29.png" width="100%"></td>
+</tr>
+<tr>
+  <td>6<br><br></td>
+ <td><img src="blond/30.png" width="100%"></td>
+ <td><img src="blond/31.png" width="100%"></td>
+ <td><img src="blond/32.png" width="100%"></td>
+ <td><img src="blond/33.png" width="100%"></td>
+ <td><img src="blond/34.png" width="100%"></td>
+</tr>
+<tr>
+  <td>7<br><br></td>
+ <td><img src="blond/35.png" width="100%"></td>
+ <td><img src="blond/36.png" width="100%"></td>
+ <td><img src="blond/37.png" width="100%"></td>
+ <td><img src="blond/38.png" width="100%"></td>
+ <td><img src="blond/39.png" width="100%"></td>
+</tr>
+<tr>
+  <td>8<br><br></td>
+ <td><img src="blond/40.png" width="100%"></td>
+ <td><img src="blond/41.png" width="100%"></td>
+ <td><img src="blond/42.png" width="100%"></td>
+ <td><img src="blond/43.png" width="100%"></td>
+ <td><img src="blond/44.png" width="100%"></td>
+</tr>
+<tr>
+  <td>9<br><br></td>
+ <td><img src="blond/45.png" width="100%"></td>
+ <td><img src="blond/46.png" width="100%"></td>
+ <td><img src="blond/47.png" width="100%"></td>
+ <td><img src="blond/48.png" width="100%"></td>
+ <td><img src="blond/49.png" width="100%"></td>
+</tr>
+</tbody>
+</table>
+
+
+<table id="lipstick">
+<thead>
+<tr>
+  <th onclick="sorting(tbody, 0)">Name</th>
+  <th onclick="sorting(tbody, 1)" width="18%">Original</th>
+  <th onclick="sorting(tbody, 2)" width="18%">D2C</th>
+  <th onclick="sorting(tbody, 3)" width="18%">StyleGAN2</th>
+  <th onclick="sorting(tbody, 4)" width="18%">NVAE</th>
+  <th onclick="sorting(tbody, 5)" width="18%">DDIM</th>
+</tr>
+
+</thead>
+<tbody>
+<tr>
+  <td>0<br><br></td>
+ <td><img src="red_lipstick/0.png" width="100%"></td>
+ <td><img src="red_lipstick/1.png" width="100%"></td>
+ <td><img src="red_lipstick/2.png" width="100%"></td>
+ <td><img src="red_lipstick/3.png" width="100%"></td>
+ <td><img src="red_lipstick/4.png" width="100%"></td>
+</tr>
+<tr>
+  <td>1<br><br></td>
+ <td><img src="red_lipstick/5.png" width="100%"></td>
+ <td><img src="red_lipstick/6.png" width="100%"></td>
+ <td><img src="red_lipstick/7.png" width="100%"></td>
+ <td><img src="red_lipstick/8.png" width="100%"></td>
+ <td><img src="red_lipstick/9.png" width="100%"></td>
+</tr>
+<tr>
+  <td>2<br><br></td>
+ <td><img src="red_lipstick/10.png" width="100%"></td>
+ <td><img src="red_lipstick/11.png" width="100%"></td>
+ <td><img src="red_lipstick/12.png" width="100%"></td>
+ <td><img src="red_lipstick/13.png" width="100%"></td>
+ <td><img src="red_lipstick/14.png" width="100%"></td>
+</tr>
+<tr>
+  <td>3<br><br></td>
+ <td><img src="red_lipstick/15.png" width="100%"></td>
+ <td><img src="red_lipstick/16.png" width="100%"></td>
+ <td><img src="red_lipstick/17.png" width="100%"></td>
+ <td><img src="red_lipstick/18.png" width="100%"></td>
+ <td><img src="red_lipstick/19.png" width="100%"></td>
+</tr>
+<tr>
+  <td>4<br><br></td>
+ <td><img src="red_lipstick/20.png" width="100%"></td>
+ <td><img src="red_lipstick/21.png" width="100%"></td>
+ <td><img src="red_lipstick/22.png" width="100%"></td>
+ <td><img src="red_lipstick/23.png" width="100%"></td>
+ <td><img src="red_lipstick/24.png" width="100%"></td>
+</tr>
+<tr>
+  <td>5<br><br></td>
+ <td><img src="red_lipstick/25.png" width="100%"></td>
+ <td><img src="red_lipstick/26.png" width="100%"></td>
+ <td><img src="red_lipstick/27.png" width="100%"></td>
+ <td><img src="red_lipstick/28.png" width="100%"></td>
+ <td><img src="red_lipstick/29.png" width="100%"></td>
+</tr>
+<tr>
+  <td>6<br><br></td>
+ <td><img src="red_lipstick/30.png" width="100%"></td>
+ <td><img src="red_lipstick/31.png" width="100%"></td>
+ <td><img src="red_lipstick/32.png" width="100%"></td>
+ <td><img src="red_lipstick/33.png" width="100%"></td>
+ <td><img src="red_lipstick/34.png" width="100%"></td>
+</tr>
+<tr>
+  <td>7<br><br></td>
+ <td><img src="red_lipstick/35.png" width="100%"></td>
+ <td><img src="red_lipstick/36.png" width="100%"></td>
+ <td><img src="red_lipstick/37.png" width="100%"></td>
+ <td><img src="red_lipstick/38.png" width="100%"></td>
+ <td><img src="red_lipstick/39.png" width="100%"></td>
+</tr>
+<tr>
+  <td>8<br><br></td>
+ <td><img src="red_lipstick/40.png" width="100%"></td>
+ <td><img src="red_lipstick/41.png" width="100%"></td>
+ <td><img src="red_lipstick/42.png" width="100%"></td>
+ <td><img src="red_lipstick/43.png" width="100%"></td>
+ <td><img src="red_lipstick/44.png" width="100%"></td>
+</tr>
+<tr>
+  <td>9<br><br></td>
+ <td><img src="red_lipstick/45.png" width="100%"></td>
+ <td><img src="red_lipstick/46.png" width="100%"></td>
+ <td><img src="red_lipstick/47.png" width="100%"></td>
+ <td><img src="red_lipstick/48.png" width="100%"></td>
+ <td><img src="red_lipstick/49.png" width="100%"></td>
+</tr>
+</tbody>
+</table>
+
+<table id="beard">
+<thead>
+<tr>
+  <th onclick="sorting(tbody, 0)">Name</th>
+  <th onclick="sorting(tbody, 1)" width="18%">Original</th>
+  <th onclick="sorting(tbody, 2)" width="18%">D2C</th>
+  <th onclick="sorting(tbody, 3)" width="18%">StyleGAN2</th>
+  <th onclick="sorting(tbody, 4)" width="18%">NVAE</th>
+  <th onclick="sorting(tbody, 5)" width="18%">DDIM</th>
+</tr>
+</thead>
+<tbody>
+  <tr>
+  <td>0<br><br></td>
+ <td><img src="beard/0.png" width="100%"></td>
+ <td><img src="beard/1.png" width="100%"></td>
+ <td><img src="beard/2.png" width="100%"></td>
+ <td><img src="beard/3.png" width="100%"></td>
+ <td><img src="beard/4.png" width="100%"></td>
+</tr>
+<tr>
+  <td>1<br><br></td>
+ <td><img src="beard/5.png" width="100%"></td>
+ <td><img src="beard/6.png" width="100%"></td>
+ <td><img src="beard/7.png" width="100%"></td>
+ <td><img src="beard/8.png" width="100%"></td>
+ <td><img src="beard/9.png" width="100%"></td>
+</tr>
+<tr>
+  <td>2<br><br></td>
+ <td><img src="beard/10.png" width="100%"></td>
+ <td><img src="beard/11.png" width="100%"></td>
+ <td><img src="beard/12.png" width="100%"></td>
+ <td><img src="beard/13.png" width="100%"></td>
+ <td><img src="beard/14.png" width="100%"></td>
+</tr>
+<tr>
+  <td>3<br><br></td>
+ <td><img src="beard/15.png" width="100%"></td>
+ <td><img src="beard/16.png" width="100%"></td>
+ <td><img src="beard/17.png" width="100%"></td>
+ <td><img src="beard/18.png" width="100%"></td>
+ <td><img src="beard/19.png" width="100%"></td>
+</tr>
+<tr>
+  <td>4<br><br></td>
+ <td><img src="beard/20.png" width="100%"></td>
+ <td><img src="beard/21.png" width="100%"></td>
+ <td><img src="beard/22.png" width="100%"></td>
+ <td><img src="beard/23.png" width="100%"></td>
+ <td><img src="beard/24.png" width="100%"></td>
+</tr>
+<tr>
+  <td>5<br><br></td>
+ <td><img src="beard/25.png" width="100%"></td>
+ <td><img src="beard/26.png" width="100%"></td>
+ <td><img src="beard/27.png" width="100%"></td>
+ <td><img src="beard/28.png" width="100%"></td>
+ <td><img src="beard/29.png" width="100%"></td>
+</tr>
+<tr>
+  <td>6<br><br></td>
+ <td><img src="beard/30.png" width="100%"></td>
+ <td><img src="beard/31.png" width="100%"></td>
+ <td><img src="beard/32.png" width="100%"></td>
+ <td><img src="beard/33.png" width="100%"></td>
+ <td><img src="beard/34.png" width="100%"></td>
+</tr>
+<tr>
+  <td>7<br><br></td>
+ <td><img src="beard/35.png" width="100%"></td>
+ <td><img src="beard/36.png" width="100%"></td>
+ <td><img src="beard/37.png" width="100%"></td>
+ <td><img src="beard/38.png" width="100%"></td>
+ <td><img src="beard/39.png" width="100%"></td>
+</tr>
+<tr>
+  <td>8<br><br></td>
+ <td><img src="beard/40.png" width="100%"></td>
+ <td><img src="beard/41.png" width="100%"></td>
+ <td><img src="beard/42.png" width="100%"></td>
+ <td><img src="beard/43.png" width="100%"></td>
+ <td><img src="beard/44.png" width="100%"></td>
+</tr>
+<tr>
+  <td>9<br><br></td>
+ <td><img src="beard/45.png" width="100%"></td>
+ <td><img src="beard/46.png" width="100%"></td>
+ <td><img src="beard/47.png" width="100%"></td>
+ <td><img src="beard/48.png" width="100%"></td>
+ <td><img src="beard/49.png" width="100%"></td>
+</tr>
+</tbody>
+</table>
+    </div>
+
+    </div>
+
+  </div>
+  <!--/ Results videos. -->
+
+</section>
+
+
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2020nerfies
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Deformable Neural Radiance Fields},
+    <pre><code>@article{sinha2021d2c
+  author    = {Sinha*, Abhishek and Song*, Jiaming and Meng, Chenlin and Ermon, Stefano},
+  title     = {D2C: Diffusion-Denoising Models for Few-shot Conditional Generation},
   journal   = {arXiv preprint arXiv:2011.12948},
-  year      = {2020},
+  year      = {2021},
 }</code></pre>
   </div>
 </section>
@@ -421,18 +709,11 @@
 
 <footer class="footer">
   <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="https://homes.cs.washington.edu/~kpar/nerfies/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
+          <p>The format of the website is borrowed from the <a href="https://nerfies.github.io/">Nerfies</a> project website. <br/> 
+          The following is copied from their webiste verbatim:</p>
           <p>
             This website is licensed under a <a rel="license"
                                                 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
