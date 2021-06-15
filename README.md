@@ -4,7 +4,12 @@ This is the repository that contains source code for the [D2C Website](https://d
 
 If you find D2C useful for your work please cite:
 ```
-
+@article{sinha2021d2c
+  author    = {Sinha*, Abhishek and Song*, Jiaming and Meng, Chenlin and Ermon, Stefano},
+  title     = {D2C: Diffusion-Denoising Models for Few-shot Conditional Generation},
+  journal   = {arXiv preprint arXiv:2106.06819},
+  year      = {2021},
+}
 ```
 
 # Website License
